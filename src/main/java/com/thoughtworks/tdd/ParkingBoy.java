@@ -1,30 +1,23 @@
 package com.thoughtworks.tdd;
 
-public class ParkingBoy {
+public class ParkingBoy implements Parkable, Fetchable {
     private ParkingLot parkingLot;
 
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
     }
-
+    @Override
     public Ticket parkCar(Car car) throws Exception {
         return parkingLot.parkCar(car);
     }
-
+    @Override
     public Car fetchCar(Ticket ticket) throws Exception {
-        return parkingLot.getCar(ticket);
+        return parkingLot.fetchCar(ticket);
     }
 
-    public String responseMessge(Ticket ticket) {
-        try {
-            parkingLot.getCar(ticket);
-        } catch (Exception e) {
-            return "Unrecognized parking ticket.";
-        }
-        return "";
-    }
 
+    @Override
     public Car fetchCar() throws Exception {
-        return parkingLot.getCar();
+        return parkingLot.fetchCar();
     }
 }

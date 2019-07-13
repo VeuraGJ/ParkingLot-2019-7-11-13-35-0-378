@@ -18,7 +18,7 @@ public class ParkingLot {
     }
 
     public Car getCar(Ticket ticket) throws Exception{
-        Car car = parkingTicketCar.get(ticket);
+        Car car = parkingTicketCar.remove(ticket);
         if(car == null) {
             throw new Exception();
         }

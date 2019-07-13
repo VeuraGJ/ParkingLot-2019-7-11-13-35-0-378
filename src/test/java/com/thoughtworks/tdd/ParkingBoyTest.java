@@ -41,10 +41,26 @@ public class ParkingBoyTest {
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         //when
-        Ticket ticket = new Ticket();
+        Ticket ticket = parkingBoy.parkCar(car);
+        Ticket wrongTicket = new Ticket();
         //then
         Assertions.assertThrows(Exception.class,()->{
-            parkingBoy.fetchCar(ticket);
+            parkingBoy.fetchCar(wrongTicket);
+        });
+    }
+    @Test
+    public void should_fetch_no_car_when_give_used_ticket() throws Exception {
+        //given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        //when
+        Ticket ticket = parkingBoy.parkCar(car);
+        parkingBoy.fetchCar(ticket);
+        Ticket usedTicket = ticket;
+        //then
+        Assertions.assertThrows(Exception.class,()->{
+            parkingBoy.fetchCar(usedTicket);
         });
     }
 }

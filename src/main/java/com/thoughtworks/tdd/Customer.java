@@ -32,7 +32,7 @@ public class Customer  {
 
     public String fetchMyCar(){
         try {
-            Car car = fetchCar.fetchCar(parkingTicket);
+            fetchCar.fetchCar(parkingTicket);
         } catch (Exception e) {
             return e.getMessage();
         }

@@ -15,9 +15,4 @@ public class ParkingBoy implements Parkable, Fetchable {
         return parkingLot.fetchCar(ticket);
     }
 
-
-    @Override
-    public Car fetchCar() throws Exception {
-        return parkingLot.fetchCar();
-    }
 }

@@ -22,6 +22,9 @@ public class ParkingLot implements Parkable, Fetchable {
     }
     @Override
     public Car fetchCar(Ticket ticket) throws Exception{
+        if(ticket == null){
+            throw new Exception("Please provide your parking ticket.");
+        }
         Car car = parkingTicketCar.remove(ticket);
         if(car == null) {
             throw new Exception("Unrecognized parking ticket.");
@@ -29,9 +32,5 @@ public class ParkingLot implements Parkable, Fetchable {
         return car;
     }
 
-    @Override
-    public Car fetchCar() throws Exception {
-        throw new Exception("give no ticket");
-    }
 
 }

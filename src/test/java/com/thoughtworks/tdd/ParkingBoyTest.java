@@ -79,4 +79,41 @@ public class ParkingBoyTest {
             parkingBoy.parkCar(eleventhCar);
         });
     }
+    @Test
+    public void should_return_unrecognized_parking_ticket_when_give_wrong_ticket() throws Exception {
+        //given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        String exceptedMessage = "Unrecognized parking ticket.";
+        //when
+        Ticket ticket = parkingBoy.parkCar(car);
+        Ticket wrongTicket = new Ticket();
+        //then
+        try {
+            parkingBoy.fetchCar(wrongTicket);
+        } catch (Exception e) {
+            String message = parkingBoy.responseMessge();
+            assertSame(exceptedMessage,message);
+        }
+    }
+    @Test
+    public void should_return_unrecognized_parking_ticket_when_give_used_ticket() throws Exception {
+        //given
+        Car car = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        String exceptedMessage = "Unrecognized parking ticket.";
+        //when
+        Ticket ticket = parkingBoy.parkCar(car);
+        parkingBoy.fetchCar(ticket);
+        Ticket usedTicket = ticket;
+        //then
+        try {
+            parkingBoy.fetchCar(usedTicket);
+        } catch (Exception e) {
+            String message = parkingBoy.responseMessge();
+            assertSame(exceptedMessage,message);
+        }
+    }
 }

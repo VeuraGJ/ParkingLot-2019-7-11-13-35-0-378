@@ -27,4 +27,8 @@ public class ParkingLot {
         }
         return car;
     }
+
+    public Car getCar() throws Exception {
+        throw new Exception();
+    }
 }

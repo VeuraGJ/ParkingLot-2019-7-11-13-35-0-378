@@ -15,7 +15,16 @@ public class ParkingBoy {
         return parkingLot.getCar(ticket);
     }
 
-    public String responseMessge() {
-        return "Unrecognized parking ticket.";
-}
+    public String responseMessge(Ticket ticket) {
+        try {
+            parkingLot.getCar(ticket);
+        } catch (Exception e) {
+            return "Unrecognized parking ticket.";
+        }
+        return "";
+    }
+
+    public Car fetchCar() throws Exception {
+        return parkingLot.getCar();
+    }
 }

@@ -11,7 +11,10 @@ public class ParkingLot {
         parkingTicketCar = new HashMap<>();
     }
 
-    public Ticket parkCar(Car car) {
+    public Ticket parkCar(Car car) throws Exception {
+        if(parkingTicketCar.size() == 10){
+            throw new Exception();
+        }
         Ticket ticket = new Ticket();
         parkingTicketCar.put(ticket,car);
         return ticket;

@@ -14,7 +14,7 @@ public class ParkingLot implements Parkable, Fetchable {
     @Override
     public Ticket parkCar(Car car) throws Exception {
         if(parkingTicketCar.size() == 10){
-            throw new Exception("no position");
+            throw new Exception("Not enough position.");
         }
         Ticket ticket = new Ticket();
         parkingTicketCar.put(ticket,car);

@@ -2,7 +2,7 @@ package com.thoughtworks.tdd;
 
 public class Customer  {
     private Parkable parkable;
-    private Fetchable fetchCar;
+    private Fetchable fetchable;
     private Car myCar;
     private Ticket parkingTicket;
 
@@ -10,8 +10,8 @@ public class Customer  {
         this.parkable = parkable;
     }
 
-    public void setFetchCar(Fetchable fetchCar) {
-        this.fetchCar = fetchCar;
+    public void setFetchCar(Fetchable fetchable) {
+        this.fetchable = fetchable;
     }
 
     public Car getMyCar() {
@@ -32,7 +32,16 @@ public class Customer  {
 
     public String fetchMyCar(){
         try {
-            fetchCar.fetchCar(parkingTicket);
+            fetchable.fetchCar(parkingTicket);
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+        return null;
+    }
+
+    public String parkMyCar() {
+        try {
+            parkable.parkCar(myCar);
         } catch (Exception e) {
             return e.getMessage();
         }

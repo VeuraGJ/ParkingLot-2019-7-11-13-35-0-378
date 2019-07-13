@@ -126,4 +126,24 @@ public class ParkingBoyTest {
         //then
         assertSame(exceptedMessage,message);
     }
+    @Test
+    public void should_return_not_enough_position_when_parkinglot_has_no_position() throws Exception {
+        //given
+        Car eleventhCar = new Car();
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Customer customer = new Customer();
+        customer.setFetchCar(parkingBoy);
+        customer.setParkable(parkingBoy);
+        customer.setMyCar(eleventhCar);
+        String exceptedMessage = "Not enough position.";
+        //when
+        for(int i = 0;i < 10;i++){
+            Car car = new Car();
+            parkingBoy.parkCar(car);
+        }
+        String message=customer.parkMyCar();
+        //then
+        assertSame(exceptedMessage,message);
+    }
 }

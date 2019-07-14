@@ -32,7 +32,8 @@ public class Customer  {
 
     public String fetchMyCar(){
         try {
-            fetchable.fetchCar(parkingTicket);
+            Car car = fetchable.fetchCar(parkingTicket);
+            setMyCar(car);
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -41,7 +42,8 @@ public class Customer  {
 
     public String parkMyCar() {
         try {
-            parkable.parkCar(myCar);
+            Ticket ticket=parkable.parkCar(myCar);
+            setParkingTicket(ticket);
         } catch (Exception e) {
             return e.getMessage();
         }

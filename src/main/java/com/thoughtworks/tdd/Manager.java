@@ -22,16 +22,35 @@ public class Manager extends ParkingBoy{
         this.fetchable = fetchable;
     }
 
+    @Override
+    public Ticket parkCar(Car car) throws Exception {
+        if(parkable == null){
+            return super.parkCar(car);
+        }else {
+            return specifyParkingBoyParkCar(car);
+        }
+    }
+
+    @Override
+    public Car fetchCar(Ticket ticket) throws Exception {
+        if(fetchable == null){
+            return super.fetchCar(ticket);
+        }else{
+            return specifyParkingBoyFetchCar(ticket);
+        }
+    }
+
     public void manageParkingBoy(ParkingBoy parkingBoy, List<ParkingLot> parkingLots){
         parkingBoy.setParkingLots(parkingLots);
         this.managementList.put(parkingBoy,parkingLots);
     }
 
     public Ticket specifyParkingBoyParkCar(Car car) throws Exception {
-        return this.parkable.parkCar(car);
+        return parkable.parkCar(car);
     }
 
     public Car specifyParkingBoyFetchCar(Ticket ticket) throws Exception {
-        return this.fetchable.fetchCar(ticket);
+        return fetchable.fetchCar(ticket);
     }
+
 }

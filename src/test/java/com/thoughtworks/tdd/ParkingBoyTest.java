@@ -3,6 +3,9 @@ package com.thoughtworks.tdd;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class ParkingBoyTest {
@@ -11,7 +14,8 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         //when
         Ticket ticket = parkingBoy.parkCar(car);
         Car fetchCar = parkingBoy.fetchCar(ticket);
@@ -24,7 +28,8 @@ public class ParkingBoyTest {
         Car firstCar = new Car();
         Car secondCar = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         //when
         Ticket firstTicket = parkingBoy.parkCar(firstCar);
         Ticket secondTicket = parkingBoy.parkCar(secondCar);
@@ -39,7 +44,8 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         //when
         Ticket ticket = parkingBoy.parkCar(car);
         Ticket wrongTicket = new Ticket();
@@ -53,7 +59,8 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         //when
         parkingBoy.parkCar(car);
         //then
@@ -66,7 +73,8 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         //when
         Ticket ticket = parkingBoy.parkCar(car);
         parkingBoy.fetchCar(ticket);
@@ -81,7 +89,8 @@ public class ParkingBoyTest {
         //given
         Car eleventhCar = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         //when
         for(int i = 0;i < 10;i++){
             Car car = new Car();
@@ -97,7 +106,8 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         Customer customer = new Customer();
         customer.setFetchCar(parkingBoy);
         customer.setParkable(parkingBoy);
@@ -115,7 +125,8 @@ public class ParkingBoyTest {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         Customer customer = new Customer();
         customer.setFetchCar(parkingBoy);
         customer.setParkable(parkingBoy);
@@ -131,7 +142,8 @@ public class ParkingBoyTest {
         //given
         Car eleventhCar = new Car();
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(parkingLot);
         Customer customer = new Customer();
         customer.setFetchCar(parkingBoy);
         customer.setParkable(parkingBoy);
@@ -145,5 +157,28 @@ public class ParkingBoyTest {
         String message=customer.parkMyCar();
         //then
         assertSame(exceptedMessage,message);
+    }
+    @Test
+    public void should_return_eleventhCar_in_second_parkinglot_when_first_parkinglot_has_no_position() throws Exception {
+        //given
+        Car eleventhCar = new Car();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.manageParkingLot(firstParkingLot);
+        parkingBoy.manageParkingLot(secondParkingLot);
+        Customer customer = new Customer();
+        customer.setFetchCar(parkingBoy);
+        customer.setParkable(parkingBoy);
+        customer.setMyCar(eleventhCar);
+        //when
+        for(int i = 0;i < 10;i++){
+            Car car = new Car();
+            parkingBoy.parkCar(car);
+        }
+        Ticket ticket=parkingBoy.parkCar(eleventhCar);
+        Car fetchCar=parkingBoy.fetchCar(ticket);
+        //then
+        assertSame(customer.getMyCar(),fetchCar);
     }
 }

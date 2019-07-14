@@ -6,15 +6,24 @@ import java.util.HashMap;
 
 public class ParkingLot implements Parkable, Fetchable {
     private HashMap<Ticket,Car> parkingTicketCar;
-    private final int CAPACITY = 10;
+    private int capacity = 10;
 
     public ParkingLot() {
         parkingTicketCar = new HashMap<>();
     }
+    public ParkingLot(int capacity) {
+
+        parkingTicketCar = new HashMap<>();
+        this.capacity = capacity;
+    }
+
+    public HashMap<Ticket, Car> getParkingTicketCar() {
+        return parkingTicketCar;
+    }
 
     @Override
     public Ticket parkCar(Car car) throws Exception {
-        if(parkingTicketCar.size() == CAPACITY){
+        if(parkingTicketCar.size() == capacity){
             throw new Exception("Not enough position.");
         }
         Ticket ticket = new Ticket();
@@ -35,6 +44,10 @@ public class ParkingLot implements Parkable, Fetchable {
 
 
     public int getEmptyPosition() {
-        return CAPACITY-parkingTicketCar.size();
+        return capacity-parkingTicketCar.size();
+    }
+
+    public double getAvailablePositionRate() {
+        return getEmptyPosition() /( capacity * 1.0);
     }
 }

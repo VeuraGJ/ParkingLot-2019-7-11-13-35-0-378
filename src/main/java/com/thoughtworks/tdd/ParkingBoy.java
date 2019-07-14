@@ -14,6 +14,10 @@ public class ParkingBoy implements Parkable, Fetchable {
         return parkingLots;
     }
 
+    public void setParkingLots(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
+    }
+
     @Override
     public Ticket parkCar(Car car) throws Exception {
         for(int i=0 ;i<parkingLots.size();i++){

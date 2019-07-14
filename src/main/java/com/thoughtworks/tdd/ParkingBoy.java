@@ -10,6 +10,10 @@ public class ParkingBoy implements Parkable, Fetchable {
         parkingLots = new ArrayList<>(2);
     }
 
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
     @Override
     public Ticket parkCar(Car car) throws Exception {
         for(int i=0 ;i<parkingLots.size();i++){

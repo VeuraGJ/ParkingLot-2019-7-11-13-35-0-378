@@ -47,4 +47,22 @@ public class ManagerTest {
         //then
         assertSame(car,fetchCar);
     }
+    @Test
+    public void should_return_car_when_give_ticket() throws Exception {
+        //given
+        Car car = new Car();
+        List<ParkingLot> parkingLotList = new ArrayList<>();
+        ParkingLot firstParkingLot = new ParkingLot();
+        ParkingLot secondParkingLot = new ParkingLot();
+        parkingLotList.add(firstParkingLot);
+        parkingLotList.add(secondParkingLot);
+        Manager manager = new Manager(parkingLotList);
+        ParkingLot managedParkingLot = new ParkingLot();
+        manager.manageParkingLot(managedParkingLot);
+        //when
+        Ticket ticket = manager.parkCar(car);
+        Car fetchCar = manager.fetchCar(ticket);
+        //then
+        assertSame(car,fetchCar);
+    }
 }

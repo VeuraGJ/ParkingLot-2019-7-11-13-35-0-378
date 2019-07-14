@@ -3,7 +3,7 @@ package com.thoughtworks.tdd;
 import java.util.HashMap;
 import java.util.List;
 
-public class Manager {
+public class Manager extends ParkingBoy{
     private HashMap<ParkingBoy, List<ParkingLot>> managementList;
     private List<ParkingLot> prividedParkingLots;
     private Parkable parkable;
